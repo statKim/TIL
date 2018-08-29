@@ -21,7 +21,7 @@
 - PaaS (Platform as a Service)
   - ex) Heroku
 - IaaS (Infrastructure as a Service)
-- AWS
+- AWS (Amazon Web Service) - cloud9(c9)
 - APIs - 다양한 API 사용할 것!
   - RESTful API
 
@@ -59,11 +59,7 @@
 - telegram
 
 - Telegram Bot API
-- chrome  - json viewer
-
-
-
-
+- chrome 확장프로그램 - json viewer 추가 설정시 json 파일 볼때 정리된 형태로 볼 수 있음
 
 - Cron / Heroku
 
