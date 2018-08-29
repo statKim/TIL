@@ -66,6 +66,6 @@ flask run --host=0.0.0.0 --port=8080
 - Markdown
 
   > tag를 이용	
-  > ex)  <p>내용</p> : 태그 안의 내용을 무슨 역할을 하는지 표시해줌
+  > ex)  `<p>내용</p>` : 태그 안의 내용을 무슨 역할을 하는지 표시해줌
   >
   > typora : markdown 파일 만드는 프로그램
