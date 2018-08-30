@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>게시판</title>
+</head>
+<body>
+    <h1>게시판입니다.</h1>
+    <form action="/create">
+        제 목 : <input type="text" name="title"><br>
+        내 용 : <input type="text" name="content"><br>
+        <input type="submit">
+    </form>
+    {% for p in posts %}
+        <p>제 목 : {{ p.title }}</p>
+        <p>내 용 : {{ p.content }}</p>
+    {% endfor %}
+</body>
+</html>

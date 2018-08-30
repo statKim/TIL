@@ -25,7 +25,7 @@
 - APIs - 다양한 API 사용할 것!
   - RESTful API
 
-* g
+* git
   * github pages		
   * bootstrap theme
 
