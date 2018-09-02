@@ -36,33 +36,33 @@
 - 순서
 
   >cd 폴더명 # 폴더 이동!!
-  
+  >
   >git init
-  
+  >
   >ls -al
-  
+  >
   >git status
-  
+  >
   >git add 파일명 #staging area에 add, 전체 add 때는 . 찍으면 됨(git add .)
-  
+  >
   >git status # 상태 확인
-  
+  >
   >git commit -m "first commit" # save(snap shot 찍는 단계)
-  
+  >
   >git status # 다시 상태 확인
-  
+  >
   >git log # history 확인
-  
+  >
   >push => 만든 repository에서 push 부분 코드 사용
- 
+  >
   >git remote add origin https://github.com/statKim/statKim.github.io.git  # 원격저장소 추가
-  
+  >
   >git remote -v # 원격저장소 확인
-  
+  >
   >git push -u origin master # git에 push
-  
+  >
   >- 수정된 부분 확인 가능(초록색 부분)
-  
+  >
   >   git diff
 
 
