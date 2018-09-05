@@ -1,0 +1,120 @@
+### 파이썬 머신러닝 코드 - iris data
+
+# Logistic Regression
+from sklearn import datasets
+from sklearn import metrics
+from sklearn.linear_model import LogisticRegression
+# load the iris datasets
+dataset = datasets.load_iris()
+# fit a logistic regression model to the data
+model = LogisticRegression()
+model.fit(dataset.data, dataset.target)
+print(model)
+# make predictions
+expected = dataset.target
+predicted = model.predict(dataset.data)
+# summarize the fit of the model
+print(metrics.classification_report(expected, predicted))
+print(metrics.confusion_matrix(expected, predicted))
+
+
+# Gaussian Naive Bayes
+from sklearn import datasets
+from sklearn import metrics
+from sklearn.naive_bayes import GaussianNB
+# load the iris datasets
+dataset = datasets.load_iris()
+# fit a Naive Bayes model to the data
+model = GaussianNB()
+model.fit(dataset.data, dataset.target)
+print(model)
+# make predictions
+expected = dataset.target
+predicted = model.predict(dataset.data)
+# summarize the fit of the model
+print(metrics.classification_report(expected, predicted))
+print(metrics.confusion_matrix(expected, predicted))
+
+
+
+# k-Nearest Neighbor
+from sklearn import datasets
+from sklearn import metrics
+from sklearn.neighbors import KNeighborsClassifier
+# load iris the datasets
+dataset = datasets.load_iris()
+# fit a k-nearest neighbor model to the data
+model = KNeighborsClassifier()
+model.fit(dataset.data, dataset.target)
+print(model)
+# make predictions
+expected = dataset.target
+predicted = model.predict(dataset.data)
+# summarize the fit of the model
+print(metrics.classification_report(expected, predicted))
+print(metrics.confusion_matrix(expected, predicted))
+
+
+
+# Decision Tree Classifier
+from sklearn import datasets
+from sklearn import metrics
+from sklearn.tree import DecisionTreeClassifier
+# load the iris datasets
+dataset = datasets.load_iris()
+# fit a CART model to the data
+model = DecisionTreeClassifier()
+model.fit(dataset.data, dataset.target)
+print(model)
+# make predictions
+expected = dataset.target
+predicted = model.predict(dataset.data)
+# summarize the fit of the model
+print(metrics.classification_report(expected, predicted))
+print(metrics.confusion_matrix(expected, predicted))
+
+
+
+# Support Vector Machine
+from sklearn import datasets
+from sklearn import metrics
+from sklearn.svm import SVC
+# load the iris datasets
+dataset = datasets.load_iris()
+# fit a SVM model to the data
+model = SVC()
+model.fit(dataset.data, dataset.target)
+print(model)
+# make predictions
+expected = dataset.target
+predicted = model.predict(dataset.data)
+# summarize the fit of the model
+print(metrics.classification_report(expected, predicted))
+print(metrics.confusion_matrix(expected, predicted))
+
+
+
+# Neural Network(pip install scikit-neuralnetwork 명령으로 모듈을 설치해야 함)
+
+from sklearn import datasets
+from sklearn import metrics
+from sknn.mlp import Classifier, Layer
+
+# load the iris datasets
+dataset = datasets.load_iris()
+
+nn = Classifier(
+    layers=[
+        Layer("Rectifier", units=100),
+        Layer("Softmax")],
+    learning_rate=0.02,
+    n_iter=10)
+
+nn.fit(dataset.data, dataset.target)
+
+expected = dataset.target
+predicted = nn.predict(dataset.data)
+# summarize the fit of the model
+print(metrics.classification_report(expected, predicted))
+print(metrics.confusion_matrix(expected, predicted))
+[출처] 파이썬 기계학습 예제|작성자 이것저것 연구실

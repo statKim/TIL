@@ -1,0 +1,10 @@
+﻿# java - python 연동!!(파이썬 neral network 실행!)
+http://joytk.tistory.com/3
+
+https://www.slideshare.net/healess/python-tensorflow-ai-chatbot	# 챗봇 예시
+http://bcho.tistory.com/tag/%EB%AA%A8%EB%8D%B8%20%EC%A0%80%EC%9E%A5	# ML model 파일로 export
+https://docs.microsoft.com/ko-kr/sql/advanced-analytics/tutorials/walkthrough-build-and-save-the-model?view=sql-server-2017
+
+# 파이썬 모델 저장 및 불러오기(메타파일)
+http://goodtogreate.tistory.com/entry/Saving-and-Restoring
+http://paiai.tistory.com/26
