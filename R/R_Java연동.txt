@@ -1,5 +1,0 @@
-# http://blog.naver.com/PostView.nhn?blogId=hancury&logNo=220177581126 참고!!
-
-
-1. 모든 training 시킨 모델을 rData파일로 저장
-2. R script(test할 code)파일에 DB연동 및 rData파일 로드해서 다시 DB에 output값 저장!!
