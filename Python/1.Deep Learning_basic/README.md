@@ -2,6 +2,6 @@
 
 ### version
 
-	> python 3.6
-	>
-	> tensorflow 1.10.0
+> python 3.6
+>
+> tensorflow 1.10.0
