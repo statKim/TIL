@@ -9,6 +9,12 @@ tf.set_random_seed(777)  # for reproducibility
 from tensorflow.examples.tutorials.mnist import input_data
 # Check out https://www.tensorflow.org/get_started/mnist/beginners for
 # more information about the mnist dataset
+''' DataSets 클래스(tf 객체)
+        train, validation, test의 멤버변수 가지고 있음!!
+        images : 이미지 데이터셋
+        labels : label 데이터셋
+        num_examples : 데이터 갯수
+        next_batch : 데이터셋으로부터 필요한 만큼의 데이터를 반환하는 함수'''
 mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)  # one_hot=True : 자동으로 y(response)를 one hot 변환해줌
 
 # class 개수 : 10개 (0 ~ 9)
