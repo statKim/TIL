@@ -61,12 +61,6 @@ def output_image(name, format, bytes):
     image_start = "BEGIN_IMAGE_f9825uweof8jw9fj4r8"
     image_end = "END_IMAGE_0238jfw08fjsiufhw8frs"
     data = {}
-    data[base64.encodestring(data[)format'] = format
-    data['bytes'] = base64.encodest
-    
-    
-    
-    
-    
-    ring(bytes)
+    data[base64.encodebytes(data[)format] = format
+    data['bytes'] = base64.encodebytes(bytes)
     print(image_start + json.dumps(data) + image_end)
