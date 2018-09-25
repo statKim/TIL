@@ -1,0 +1,113 @@
+############################
+### Chapter 2. Clustering
+############################
+
+################################
+## Hierachical Cluster Analysis
+################################
+
+# USArrests data의 distance matrix 구함(standardized data 사용, manhattan distance 사용)
+USArrests.dist <- dist(scale(USArrests), method = "manhattan") # scale():standardizing해줌
+
+# hierarchical clustering의 Linkage 방법을 이용(complete linkage)
+USArrests.hclust <- hclust(USArrests.dist, method = "complete")
+
+# Names of the results from hclust function
+names(USArrests.hclust)
+
+USArrests.hclust$height
+
+# Plot Dendrogram plot(USArrests.hclust) Cut in 4 groups and color by groups
+# Dendrogram 그리기(4 clusters(k=4))
+library(factoextra)
+fviz_dend(USArrests.hclust, k = 4, cex = 0.5, k_colors = c("#2E9FDF", "#00AFBB",
+"#E7B800", "#FC4E07"), color_labels_by_k = TRUE, rect = TRUE)
+
+# clustering classes when k=4
+# 각 원소가 어떤 cluster에 들어갔는지 보여줌
+hc.class <- cutree(USArrests.hclust, k = 4)
+
+which(hc.class==1) # hc.class에서 1th cluster에 속한 것들만 출력
+plot(USArrests, col=hc.class)
+
+# Scatter plot matrix with the results of hierarchical clustering For more
+# details, type ?dist ?hclust ?cutree fviz_dend(USArrests.hclust, k = 4, cex
+# = 0.5, k_colors = c('#2E9FDF', '#00AFBB', '#E7B800', '#FC4E07'),
+# color_labels_by_k = TRUE, rect = TRUE) plot(USArrests, col = hc.class, pch
+# = hc.class)
+
+
+#################################################
+### k-means cluster analysis for USArrests data
+#################################################
+
+m = 20
+set.seed(1) # 난수생성시 시드 지정(예를들어 다시 실행했을 때 같은 난수가 나오도록하기 위해
+            # 시드에 저장해 놓는 것!)
+wss = numeric(m)
+
+for (i in 1:m) {
+  US.km <- kmeans(scale(USArrests), centers = i)
+  wss[i] = US.km$tot.withinss
+}
+
+plot(wss,type='b',xlab='k (number of clusters)', ylab='Total within sum of
+     # squares')
+
+US.km <- kmeans(scale(USArrests), centers = 4)
+plot(USArrests, col = US.km$cluster, pch = US.km$cluster)
+
+plot(prcomp(USArrests, center = TRUE,scale=TRUE)$x[,c(1,2)],col =
+US.km$cluster, pch = US.km$cluster)
+
+
+#########################################
+### Determine the cluster numbers
+#########################################
+
+USArrests data
+library(factoextra)
+library(NbClust)
+df <- scale(USArrests)
+head(df)
+
+# Elbow method 
+fviz_nbclust(df, kmeans, method = 'wss') + 
+geom_vline(xintercept = 4, linetype = 2)+ labs(subtitle = 'Elbow method')
+
+# Silhouette method 
+fviz_nbclust(df, kmeans, method = 'silhouette') + 
+labs(subtitle = 'Silhouette method') 
+
+# Gap statistic 
+# nboot = 50 to keep the function speedy. recommended value: nboot= 500 for your
+# analysis. Use verbose = FALSE to hide computing progression.
+set.seed(123)
+fviz_nbclust(df, kmeans, nstart = 25, method = 'gap_stat', nboot = 50) + 
+labs(subtitle = 'Gap statistic method')
+
+library("NbClust")
+# NbClust() : 30번 시행해서 best number를 구함(다수결로)
+nb <- NbClust(df, distance = "euclidean", min.nc = 2, max.nc = 10, method = "kmeans")
+
+library("factoextra")
+nbc <- fviz_nbclust(nb)
+
+
+###################################
+### Mixture model based clustering
+###################################
+
+# Normal Mixture Models
+library(mclust)
+fit <- Mclust(USArrests)
+plot(fit,what='classification')
+fit$classification
+
+fitBIC <- mclustBIC(USArrests)
+fitModel <- mclustModel(USArrests, fitBIC, g = 1:5)
+fitModel # shows the best model with parameter estimates
+
+
+
+
