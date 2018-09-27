@@ -15,10 +15,8 @@ lm.fit3 <- lm(mpg~poly(horsepower ,3), data=Auto, subset=train)
 ## test MSE
 attach(Auto)
 test_mse <- vector() # 비어있는 vector 생성
-	# 참고 - predict() 옵션에 test set 안넣으면 training set으로 predict함
-	# 비교!!
-	mean((mpg-predict(lm.fit,Auto))^2) # test set 옵션으로 안넣은 경우
-	mean((mpg-predict(lm.fit,Auto))[-train]^2)
+	# 참고 - predict() 옵션에 test set(또는 predict할 data) 안넣으면 
+	# fit할 때 쓰인 training set으로 predict함
 test_mse[1] <- mean((mpg-predict(lm.fit,Auto))[-train]^2)
 test_mse[2] <- mean((mpg-predict(lm.fit2,Auto))[-train]^2)
 test_mse[3]<- mean((mpg-predict(lm.fit3,Auto))[-train]^2)
