@@ -1,3 +1,6 @@
 # Python
 
-### ver. python 3.6.1
+- 1.Deep Learning_basic
+- 2.Intro to Machine Learning
+- 3.ML-Kaggle
+- 99.etc
