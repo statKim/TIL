@@ -1,4 +1,35 @@
+import numpy as np
 import pandas as pd
+from sklearn.model_selection import StratifiedKFold
+import lightgbm as lgbm
+
+# Gini index 계산하는 함수
+def Gini(y_true, y_pred):
+    # 정답과 예측값의 개수가 동일한지 확인한다
+    assert y_true.shape == y_pred.shape
+    n_samples = y_true.shape[0]
+
+    # 예측값(y_pred)를 오름차순으로 정렬한다
+    arr = np.array([y_true, y_pred]).transpose()
+    true_order = arr[arr[:, 0].argsort()][::-1, 0]
+    pred_order = arr[arr[:, 1].argsort()][::-1, 0]
+
+    # Lorenz curves를 계산한다
+    L_true = np.cumsum(true_order) * 1. / np.sum(true_order)
+    L_pred = np.cumsum(pred_order) * 1. / np.sum(pred_order)
+    L_ones = np.linspace(1 / n_samples, 1, n_samples)
+
+    # Gini 계수를 계산한다
+    G_true = np.sum(L_ones - L_true)
+    G_pred = np.sum(L_ones - L_pred)
+
+    # Gini 계수를 정규화한다
+    return G_pred * 1. / G_true
+
+# LightGBM 모델 학습 과정에서 평가 함수로 사용한다
+def evalerror(preds, dtrain):
+    labels = dtrain.get_label()
+    return 'gini', Gini(labels, preds), True
 
 # 훈련/테스트 데이터를 읽어온다
 train = pd.read_csv("../input/train.csv")
