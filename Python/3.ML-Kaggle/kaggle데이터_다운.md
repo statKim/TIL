@@ -1,6 +1,4 @@
-### Kaggle에서 data 다운 받는 법!!
-
-
+# Kaggle에서 data 다운 받는 법!!
 
 1. kaggle 회원가입
 
