@@ -8,6 +8,8 @@
 
 -> 해당되는 가상환경 선택 (ex - `conda` or `virtualenv` 등)
 
+ -> `Existing environment` 탭 클릭!!  -> `Interpreter` 옆의 `...` 클릭
+
 -> 가상환경 폴더 내에 있는 "python.exe" 경로 선택 (ex - "C:/Anaconda/envs/가상환경이름/python.exe")
 
 
