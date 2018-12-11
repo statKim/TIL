@@ -9,9 +9,7 @@
 ## Index
 
 - [**R**](https://github.com/statKim/TIL/tree/master/R)
-
 - [**Python**](https://github.com/statKim/TIL/tree/master/Python)
-
+- [**Java**](https://github.com/statKim/TIL/tree/master/Java)
 - [**Git**](https://github.com/statKim/TIL/tree/master/Git)
-
 - [**etc**](https://github.com/statKim/TIL/tree/master/etc)
