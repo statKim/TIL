@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>가변 마진 / 가변 패딩</title>	<!-- 한글만 가능!! -->
+		<style>
+			* {
+				margin:0;
+				padding:0;
+				font-size:100%;
+			}
+			
+			#wrap{
+				width:90%;
+				margin:0 auto;	/* auto : 남는 여백 좌/우 자동 조절(가운데 정렬) */
+				padding:0.5%;
+				background-color:yellow;
+			}
+			
+			#wrap div{
+				width:90%;
+				margin:5%;
+				background-color:green;
+			}
+			p {padding:4%;}
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<div>
+				<p>ㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱ
+				ㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱ</p>
+			</div>
+			<div>
+				<p>ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ
+				ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ</p>
+			</div>
+		</div>
+	</body>
+</html>

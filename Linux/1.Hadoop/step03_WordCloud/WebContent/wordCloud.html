@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+
+
+<style>
+    @font-face {
+        font-family: 'overwatch';
+        src: url('fonts/koverwatch.woff2');
+    }
+</style>
+
+<body>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js" type="text/JavaScript"></script>
+    <script>
+    	/* 서버로 부터 데이터를 실시간 받아와서 화면에 지속적인 출력
+    		1. html 문서가 실행되지 마자 서버에 요청 날리고 
+    			응답 받아와서 화면에 출력
+    		2. 응답된 데이터는 d3 library의 데이터로 반영   	*/
+
+       //이름이 없는 단, </body> 가 read되면 자동 실행되는 자바스크립코드
+       window.onload=function(){
+    	   ajaxFun();
+       }
+    	
+       //비동기 처리 기술 새로 추가
+       function ajaxFun() {
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					//응답된 데이터를 JSON 객체로 변환
+					data = eval(this.responseText);
+					//wordcloud 그리는 함수의 parameter로 반영
+					dataView(data);
+				}
+			};
+			xhttp.open("GET", "cont", true);
+			xhttp.send();
+		}
+       
+        var width = 960, height = 500
+
+        var svg = d3.select("body").append("svg")
+            .attr("width", width)
+            .attr("height", height);
+        
+        
+         function dataView(data){//사용자 정의 함수
+            showCloud(data);
+            setInterval(function(){
+                 showCloud(data)
+            }, 3000) 
+         }
+        //scale.linear: 선형적인 스케일로 표준화를 시킨다. 
+        //domain: 데이터의 범위, 입력 크기
+        //range: 표시할 범위, 출력 크기 
+        //clamp: domain의 범위를 넘어간 값에 대하여 domain의 최대값으로 고정시킨다.
+        wordScale = d3.scale.linear().domain([0, 100]).range([0, 150]).clamp(true);
+        var keywords = ["자리야", "트레이서", "한조"]
+        var svg = d3.select("svg")
+                    .append("g")
+                    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
+
+        function showCloud(data) {
+//        	data = eval(data);
+            d3.layout.cloud().size([width, height])
+                //클라우드 레이아웃에 데이터 전달
+                .words(data)
+                .rotate(function (d) {
+                    return d.text.length > 3 ? 0 : 90;
+                })
+                //스케일로 각 단어의 크기를 설정
+                .fontSize(function (d) {
+                    return wordScale(d.frequency);
+                })
+                //클라우드 레이아웃을 초기화 > end이벤트 발생 > 연결된 함수 작동  
+                .on("end", draw)
+                .start();
+
+            function draw(words) { 
+                var cloud = svg.selectAll("text").data(words)
+                //Entering words
+                cloud.enter()
+                    .append("text")
+                    .style("font-family", "overwatch")
+                    .style("fill", function (d) {
+                        return (keywords.indexOf(d.text) > -1 ? "#3F51B5" : "#405275");
+                    })
+                    .style("fill-opacity", .5)
+                    .attr("text-anchor", "middle") 
+                    .attr('font-size', 1)
+                    .text(function (d) {
+                        return d.text;
+                    }); 
+                cloud
+                    .transition()
+                    .duration(600)
+                    .style("font-size", function (d) {
+                        return d.size + "px";
+                    })
+                    .attr("transform", function (d) {
+                        return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+                    })
+                    .style("fill-opacity", 1); 
+            }
+        }
+    </script>
+</body>

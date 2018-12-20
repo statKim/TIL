@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>animate() 효과</title>
+        <style>			
+			div {
+				width: 50px; height: 50px;
+				background-color: rgb(0, 176, 240);
+				position: relative;
+        	}
+			#box2 { top:100px; }		
+		</style>   
+		<script src="jquery-3.3.1.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$("#box1").animate({ left: "+=300" }, 1000)	//위치는 어차피 0이어서 더하나마나임!!
+						.animate({ width: "+=300" }, 2000)	//원래 박스 크기에 300을 더한 크기만큼 해줌
+						.animate({ height: "+=300" }, 2000)
+				
+				//6초 후에 함수 실행
+				setTimeout(function() {
+					//애니메이션 큐 제거
+					$("div").clearQueue();
+					
+					//사라짐
+					$("div").hide();
+				}, 6000);
+				
+				$("#box2").animate({ left: "+=300" }, 1000)
+						.animate({ width: "+=300" }, 2000)
+						.animate({ height: "+=300" }, 2000)
+			});
+		</script>    
+    </head>   
+    
+    <body>    
+        <div id="box1"></div>
+        <div id="box2"></div>
+    </body>
+</html>

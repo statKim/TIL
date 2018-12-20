@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+		<title>전역변수/지역변수</title>
+		<script type="text/javascript">
+			//여기에 선언한 변수는 var가 붙든 안붙든 전역변수(멤버변수)
+			//모든 곳에서 사용 가능
+			var name = "홍길동";
+			year = 2;
+			
+			//전역변수 값 출력
+			document.write("성명 : " + name + "<br>");
+			document.write("학년 : " + year + "<br>");
+			
+			//사용자 함수 save() 선언
+			//save() 함수가 하는 일 : 각 변수에 값 저장
+			function save() {
+				var school = "한국대학교";		//함수 내에서 var를 붙여 선언 - 지역변수
+											//save() 내에서만 사용 가능
+				name = "이몽룡";	//name이 전역변수이므로 사용가능
+				year = 3;		//year이 전역변수이므로 사용가능
+				department = "한국어과";	//var 없이 선언/초기화 - 전역변수로 간주
+			}
+			
+			save();	//save() 함수를 호출해서 변수에 값 저장
+			//save() 함수를 호출하지 않으면 변수에 값이 저장되지 않음
+			//함수는 호출해서 일을 시키지 않으면 일을 하지 않음
+			
+			//show() 함수 선언
+			//show() 함수가 하는 일 : 변수에 들어있는 값 출력
+			function show() {
+				document.write("<p>");
+				//document.write("학교 : " + school + "<br>");
+				//school은 save() 내에서 var를 붙여 선언된 지역변수이므로
+				//save() 함수 내에서만 사용 가능
+				//show() 함수에서 사용할 수 없음 - 실행시 오류 발생
+				document.write("성명 : " + name + "<br>");	//name 전역변수
+				document.write("학과 : " + department + "<br>")	//department 전역변수
+				document.write("학년 : " + year + "<br>");	//year 전역변수
+			}
+			
+			show();	//show() 함수를 호출해서 변수에 들어있는 값 출력
+		</script>
+	</head>
+	<body>
+
+	</body>
+</html>

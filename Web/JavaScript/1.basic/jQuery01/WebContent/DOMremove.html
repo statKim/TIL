@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>remove() / empty()</title>
+        <style>		 	
+			div { width:400px; border:1px solid #000;}		
+		</style>	
+		<script src="jquery-3.3.1.min.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$("#remove").on("click",function(){
+					$("div").remove();	//div 영역 완전 제거
+				});
+				
+				$("#empty").on("click",function(){
+					$("div").empty();	//div 영역은 남아있고 모든 자식 요소만 제거
+				});
+				
+				$("#appendTo").on("click",function(){
+					//h1 다음에 div 삽입
+					$("<div><p>제목 다음에 div 삽입</p></div>").insertAfter("h1");
+				});
+				
+				$("#appendChildTo").on("click",function(){
+					//div 안에 자식 노드 삽입
+					$("div").append("<br><b>div 안에 자식 노드 삽입</b>");
+				});
+			})
+		</script>
+	</head>
+	<body>
+        <h1>remove() 와 empty()</h1>
+        <div>
+            <p>자식 노드1</p>
+            <p>자식 노드2</p>
+        </div>    
+        <br>
+        <input type="button" id="remove" value="remove" />
+        <input type="button" id="empty" value="empty" />
+        <input type="button" id="appendChildTo" value="자식 노드 삽입" />
+        <input type="button" id="appendTo" value="제목 뒤에 삽입" />	
+	</body>
+</html>

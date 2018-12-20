@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>inlineBlock 예제</title>
+	<style>
+		.green_box{
+			/*display:block;*/
+			/*display:inline;*/
+			display:inline-block;
+			/*float:right; /*오른쪽부터 배치됨*/*/
+			width:150px;
+			height:75px;
+			margin:10px;	/*박스 끼리의 간격*/
+			border:solid 3px #73AD21;
+		}
+	</style>
+</head>
+<body>
+	<h2>display 속성 (block / inline / inline-block)</h2>
+	
+	<!-- div는 기본적으로 박스형태처럼 배치됨(default 배치가 위에서 아래방향으로(block 배치)) -->
+	<div class="green_box">박스 1</div>
+	<div class="green_box">박스 2</div>
+	<div class="green_box">박스 3</div>
+	<div class="green_box">박스 4</div>
+</body>
+</html>

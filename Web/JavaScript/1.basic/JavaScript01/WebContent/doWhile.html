@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+		<title>do ~ while 문</title>
+		<script type="text/javascript">
+			var answer;
+			var count = 0;
+			
+			do {
+				count++;
+				alert("경고" + count);
+				answer = confirm("계속 경고장을 보시겠습니까?");
+			} while(answer);	//answer이 true면 반복
+			
+			document.write("경고창 출력 횟수 : " + count);
+		</script>
+	</head>
+	<body>
+
+	</body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>클래스 속성 추가/해제</title>
+        <style>
+			.h1Css {
+				background-color:gold;
+				color:blue;
+				width:500px;
+			}
+			.imgCss { 
+				opacity:0.5; 
+				width:200px;
+				height:250px;
+			}
+		</style>
+		<script src="jquery-3.3.1.min.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$("h1")
+					.on("mouseover",function() {	//마우스 댔을 때
+						$(this).text("여러 CSS 효과 동적으로 적용");
+						$(this).addClass("h1Css");	//h1Css 클래스 효과 적용
+						$("img").addClass("imgCss");	//imgCss 클래스 효과 적용
+					})
+					.on("mouseout",function() {	//마우스 뗐을 때
+						$(this).text("여기에 마우스를 올려보세요.");
+						$(this).removeClass("h1Css");	//h1Css 클래스 효과 제거
+						$("img").removeClass("imgCss");	//imgCss 클래스 효과 제거
+					});
+			});
+		</script>
+	</head>
+	<body>
+        <h1>여기에 마우스를 올려보세요.</h1>
+        <img src="image/painting.jpg">
+	</body>
+</html>

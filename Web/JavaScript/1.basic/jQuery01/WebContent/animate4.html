@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>수행할 함수가 있는 예제</title>  
+        <script src="jquery-3.3.1.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$("img").delay(2000).animate(	//시작시 2초 지연하고 오른쪽으로 이동하면서 크기 커짐
+					{marginLeft : "500px", width:"500px", height:"500px", marginTop:"50px"},
+					3000,
+					"swing",
+					function(){	//효과 완료 후 수행할 함수
+						$(this).css({transform:"rotate(30deg)"});
+					}
+				).delay(2000).animate(	//2초 멈췄다가 왼쪽으로 이동하면서 크기 작아짐
+					{marginLeft : "0px", width:"50px", height:"50px", marginTop:"0px"},
+					500,
+					"linear",
+					function(){	//효과 완료 후 수행할 함수
+						$(this).css({transform:"rotate(0deg)"});
+					}		
+				);	//animate 끝
+			});
+		</script> 
+    </head>    
+    <body>    
+        <img src="image/larva.png" width="50" height="50"> 
+    </body>
+</html>

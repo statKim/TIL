@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+div {
+    margin-bottom: 20px;
+    padding : 5px;
+    line-height: 30px;
+}
+
+
+.info {
+    background-color: #f0f2f5;
+    border-left: 5px solid #b8d9f3;
+}
+
+
+</style>
+</head>
+<body>
+
+<h2>Linux 기초 및 활용 명령어</h2>
+
+<hr color="red">
+
+1. 개요 및 탄생 배경
+<br><br>
+
+<div class="info">
+  1984년에 리차드 스톨만(Richard Stallman)에 의해서 GNU 프로젝트가 시작<br>
+  GNU 프로젝트에서 제작한 소프트웨어를 지원함으로써 컴퓨터 프로그램의 복제, 변경, 소스 코드의 사용에 대한 제한을 철폐<br>
+  ‘모두가 공유할 수 있는 소프트웨어’를 만드는 것이 주 목적<br><br>
+  프리웨어(Freeware, 무료 소프트웨어) 즉 진정한 자유(Freedom)에 대한 개념<br>
+  자유 소프트웨어는 심지어 무료로 얻은 소프트웨어를 유상으로 판매할 자유도 보장<br>
+</div>
+<br><br>
+
+2. 레드햇 리눅스와 CentOS 리눅스<br><br>
+<div class="info">
+  전 세계적으로 가장 유명한 배포판 중 하나가 레드햇(Red Hat)사에서 제작한 ‘레드햇 리눅스(Red Hat Linux)’<br>
+  상용으로 판매되는 레드햇 엔터프라이즈 리눅스(Red Hat Enterprise Linux), 공개된 레드햇 엔터프라이즈 리눅스의 소스코드를 그대로 가져와서,
+  로고만 변경한 후에 다시 컴파일(또는 빌드)해서 만든 것이 CentOS<br><br>
+
+</div>
+<br>
+
+<div class="info">
+  리눅스 명령어 학습 전 필수 암기 사항<br>
+  1. 단순하게 문서 내용 보기 명령어 - cat<br>
+  2. 문서 편집 명령어 - vi <br>
+    2-1. 수정시 i / a <br>
+    2-2. 수정 후 저장! esc -> shift + ; -> wq<br>
+    2-3. 수정 후 저장 안함! esc -> shift + ; -> q! <br>
+    2-4. 단순 보기만 한 후에 파일 내용 종료! esc -> shift + ; -> q <br>
+  3. 존재하는 문서 삭제 명령어 -> rm -rf 파일명.확장자<br>
+
+</div>
+
+<hr color="blue"><br>
+<h3>[1] 디렉터리 관련 명령어 : pwd, cd, ls, mkdir, rmdir</h3><p>
+
+1. 현재 디렉터리의 전체 경로 확인<br>
+<div class="info">
+  pwd
+</div>
+
+
+2. 디렉터리 내용 보기<br>
+<div class="info">
+  ls<br>
+  ls -F
+</div>
+
+
+3. 디렉터리 이동<br>
+<div class="info">
+  cd 디렉터리명<br>
+  cd /tmp<br>
+  cd ~
+</div>
+
+
+4. 디렉터리 만들기<br>
+<div class="info">
+  mkdir 디렉터리명<br>
+</div>
+
+
+5. 디렉터리 삭제<br>
+<div class="info">
+  rmdir 디렉터리명<br>
+  주의사항 : 삭제하고자 하는 디렉토리 하위에 파일 또는 디렉토리가 존재할 경우
+  미리 삭제해야 함<br>
+</div>
+
+
+6. 파일 삭제<br>
+<div class="info">
+  rm -rf 파일명.확장자<br>
+</div>
+
+
+<p><hr></p>
+<h3>[2] 파일 관련 명령어 : cat, more, less, head, tail, cp, mv, rm, touch, grep</h3><p>
+
+1. 파일 내용 단순 연속 출력 - 편집 불가능<br>
+<div class="info">
+  cat file명<br>
+</div>
+<br>
+
+2. 화면에 페이지 단위로 파일 내용 출력<br>
+<div class="info">
+  more 파일명<br>
+  - 방향키, pageUp/Down 다 무효, 다음 내용만 read<br>
+  - 엔터키로 다음 내용 확인 가능<br>
+  - 종료시 ctrl + z<br>
+</div>
+<br>
+
+3.지나간 내용도 확인 가능<br>
+<div class="info">
+  less file명<br>
+  - 방향키, pageUp/Down 다 가능<br>
+  - 종료시 q<br>
+</div>
+<br>
+
+4. 파일 앞부분 출력<br>
+<div class="info">
+  head -n line수 파일명<br>
+</div>
+<br>
+
+5. 파일 뒷부분 출력<br>
+<div class="info">
+  tail -n line수 파일명<br>
+</div>
+<br>
+
+6. 빈 파일 생성하기<br>
+<div class="info">
+  touch newFile.txt<br>
+</div>
+<br>
+
+7. 파일 또는 디렉토리 복사하기<br>
+<div class="info">
+  cp <br>
+  #두 인자가 모두 파일인 경우 - 파일을 다른 파일로 복사<br>
+  #두 인자가 디렉터리인 경우 - 파일을 해당 디렉터리 아래로 복<br>
+  cp oldFile.txt newFile.txt
+</div>
+<br>
+
+8. 파일과 디렉터리의 이름 변경하거나 위치 이동하기<br>
+<div class="info">
+  #mv
+  #파일을 파일로 이동<br>
+  mv 옮기기전File.txt 옮긴후File.txt<br>
+  mv 현재경로/파일명.확장자 이동폴더<bt>
+  #두번째 인자가 디렉터리인 경우 - 원본 파일을 지정한 디렉터리로 이동<br>
+
+  <br><br>
+  * 실제 실습한 내용<br>
+  $centos> touch test1/data.txt<br>
+  $centos> mv test1/data.txt test2<br>
+
+  * 명령어 실행 후 확인<br>
+  $centos>ls -l test1<br>
+  $centos>ls -1 test2<br>
+</div>
+<br>
+
+9. 파일 삭제하기<br>
+<div class="info">
+  #rm [옵션] 파일명/디렉터리명<br>
+  rm -rf 파일명.확장자<br>
+  rm -r 파일명.확장자<br>
+  rm newFile2.txt<br>
+  rm -r /폴더명
+</div>
+<br>
+
+10. 파일 내용 검색하기<br>
+<div class="info">
+  #grep [옵션] 패턴 [파일명]<br>
+  grep hi newFile.txt
+</div>
+
+
+<p><hr></p>
+<h3>[3] vi 편집기 사용하기</h3><br><br>
+
+<div class="info">
+  vi 에디터 사용법 개요도<br>
+  <img src="images/viEdit.PNG"><br><br>
+  <br>
+
+  vi의 비정상 종료 후 다시 열었을 때<br>
+  <img src="images/viEditSwap.PNG"><br><br>
+
+  vi 기능 요약<br>
+  <img src="images/vi기능요약표.PNG"><br><br>
+</div>
+
+</body>
+</html>

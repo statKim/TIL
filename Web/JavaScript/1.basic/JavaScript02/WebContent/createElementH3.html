@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+		<title>createElement('h3') 예제</title>
+		<script type="text/javascript">
+			window.onload = function() {
+				//1단계 : 요소 노드 생성
+				// 요소 노드(<h3> 태그) 생성하고 변수에 저장
+				var h3 = document.createElement('h3');//객체참조변수 - 태그명
+				//출력할 텍스트를 요소 노드로 생성하고 text에 저장
+				var text = document.createTextNode("출력할 텍스트 : 홍길동");
+			
+				//2단계 : 문서에 출력
+				//텍스트 노드를 h3에 연결
+				h3.appendChild(text);
+				//h3을 문자 body에 연결(출력)
+				document.body.appendChild(h3);
+			}
+		</script>
+	</head>
+	<body>
+
+	</body>
+</html>

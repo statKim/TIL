@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+		<title>indexOf()</title>
+		<script type="text/javascript">
+			var email = prompt("이메일 입력 : ","");
+			var isEmail = true;
+			
+			//이메일 형식 아닌 조건
+			//@ 없는 경우, . 없는 경우 (-1 반환)
+			//.이 @ 앞에 오는 경우
+			for (var i=0; i<email.length; i++) {
+				if ((email.indexOf("@")==-1) || (email.indexOf(".")==-1) ||
+					(email.indexOf("@") > email.indexOf("."))) {
+					isEmail = false;
+				}
+			}
+			
+			if (isEmail == false) {
+				alert("이메일 형식이 아닙니다");
+			}
+			
+			document.write(email);
+		</script>
+	</head>
+	<body>
+
+	</body>
+</html>

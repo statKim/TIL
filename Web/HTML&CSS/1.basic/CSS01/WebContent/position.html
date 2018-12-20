@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Position 속성</title>
+	<style>
+		* { /*문서 전체에 적용*/
+			margin:0;
+			padding:0;
+		}
+		
+		#parent {
+			position:relative; /*또는 absolute*/
+			width:200px;
+			height:300px;
+			border:solid 5px #000000;
+			margin:50px 0 0 50px;
+		}
+		
+		#boxA, #boxB, #boxC {
+			width:80px;
+			height:80px;
+		}
+		
+		#boxA {background-color:#ff0000;}
+		#boxB {background-color:#00ff00;}
+		#boxC {background-color:#ffff00;}
+		
+		#boxB {	/*위에서 20, 왼쪽에서 30씩 움직임/ relative:원래 있던 위치에서 움직임
+					absolute:최상단으로부터 움직임(화면 맨왼쪽위)*/
+			/*position:relative;*/
+			position:absolute;
+			top:20px;
+			left:30px;
+		}
+	</style>
+</head>
+<body>
+	<div id="parent">
+		<div id="boxA">A</div>
+		<div id="boxB">B</div>
+		<div id="boxC">C</div>
+	</div>
+</body>
+</html>

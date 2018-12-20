@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>req.html</title>
+</head>
+<body>
+	<!-- 
+		http://ip:port/project명(context)/apply/req.html
+		http://ip:port/project명(context)/res
+		http://ip:port/project명(context)/apply/reqView.jsp
+	 -->
+
+	<button onclick="location.href='../res'">이동</button>
+	<br><hr color="blue"><br>
+	
+	<h2>비동기로 화면 이동 없이 데이터 출력</h2>
+	button 클릭시 서버에 요청 -> 응답을 요청한 html 위치로 응답<br>
+	처리 기술 : html/java script<br>
+	핵심 기술 : java script에 XMLHttpRequest(비동기 요청응답 객체)<br>
+	
+	* XMLHttpRequest 기능<br>
+	1. 요청 기능 : get? post?/ server의 어떤 program한테 요청할 것인지 지정<br>
+	2. 응답 기능 : 404(요청 파일이 없을 때), 500(서버 문제...) - 응답 완료<br>
+				<font color="red"> 응답 완료? 정상 응답? 확인 필수</font>
+	
+	<br>
+	<button onclick="reqAjaxRes()">비동기 요청</button>
+	
+	<script type="text/javascript">
+
+		function reqAjaxRes() {
+			//비동기로 요청하고 응답되는 데이터를 처리하는 객체
+			//xhr
+			var xhttp = new XMLHttpRequest();
+			
+			//서버와 클라이언트 간의 요청, 응답 상태가 변화되면 자동 인지하는 속성
+			/* 응답 완료(readyState == 4), 
+			       정상 응답 여부 확인(status == 200)
+			   responseText 속성 : 응답된 데이터를 보유하게 되는 속성
+			*/
+			
+			//"xhttp.onreadystatechange"이라는 변수의 특성때문에 맨 마지막에 실행됨!! => 다른 경우는 먼저 실행되고 open,send 실행
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					//alert(this.responseText);
+					//?nameView2 input tag에 이름만 출력
+					//json변환 가능한 순수 문자열로 받음
+					//document.getElementById("nameView2").value = eval("(" + this.responseText + ")").name;
+					document.getElementById("nameView2").value = JSON.parse(this.responseText).name;
+				}
+			};
+			
+			//get? post? 지정, 요청하게 되는 서버프로그램 지정
+			xhttp.open("GET", "resViewAjax.jsp", true);
+			
+			//실제 서버에 요청
+			xhttp.send();
+		}
+	</script>
+	<br>
+	<input type="text" id="nameView2">
+	
+</body>
+</html>

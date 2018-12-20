@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="EUC-KR">
+	<title>chart2.html</title>
+	
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    
+    <script type="text/javascript">
+    	//구글에서 어떤 차트를 사용할 것인가에 대한 설정
+      google.charts.load('current', {'packages':['corechart']});
+    	
+    	//</body>가 실행되면 자동 호출되는 함수를 등록하는 함수 => 버튼 클릭하면 실행되게 할거라 주석처리함
+    	//콜백 함수
+      //google.charts.setOnLoadCallback(drawChart);
+
+    	
+      	//브라우저가 로딩 마무리시에 자동 호출되는 함수
+      function drawChart(data) {
+			alert(data);
+			//data = JSON.parse(data);
+			data = eval(data);	//배열은 파싱할 때 '[]' 이런 것 쓰면 안됨!!
+      	//차트에 사용될 데이터들
+        var data = google.visualization.arrayToDataTable( data );
+		
+      	//차트의 타이틀
+        var options = {
+          title: 'My Daily Activities'
+        };
+		
+      	//html의 특정 tag에 차트 그리기
+      	//필요한 데이터는 사용될 데이터 + title
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
+    <br><hr><br>
+    <button onclick="ajaxReq()">차트 그리기 비동기 요청</button>
+    
+    <script type="text/javascript">
+		function ajaxReq() {
+		  var xhttp = new XMLHttpRequest();
+		  
+		  xhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) {
+		    	//innerHTML - js에서 html tag를 화면에 출력할 때 사용되는 속성
+		    	//주의사항 : div와 p tag에 반영되는 속성
+		    	drawChart(this.responseText);
+		    }
+		  };
+		  
+		  xhttp.open("GET", "chart2Res.jsp", true); //true : 비동기
+		  xhttp.send();			
+		}
+	</script>
+  </body>
+</html>

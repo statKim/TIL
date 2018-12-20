@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	버튼 클릭하면 res.jsp로 get방식으로 요청해서<br>
+	csv 형태의 친구들 이름을 받아와서
+	input 화면에 단순 출력
+	
+	<button onclick='myFun()'>이름 받아 오기</button>
+	
+	<br>
+	<input type='text' id='n1'><br>
+	<input type='text' id='n2'><br>
+
+	<script type="text/javascript">
+		function myFun(){
+			loadDoc();
+		}
+		
+		function loadDoc() {
+			//java script의 비동기 요청 처리 객체
+			var xhttp = new XMLHttpRequest();
+			
+			//정상 응답 완료시 처리 로직을 등록
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					//responseText - 서버가 응답하는 데이터를 
+					//자동으로 보유하게 되는 속성
+					data = this.responseText;
+					data = eval(data);
+					alert(data[0].text);
+				
+					/* data = this.responseText;
+					all = data.split(/\r\n|\r|\n/);
+					
+					for(i=0; i < all.length; i++){
+						data=all[i];						
+					}
+					document.getElementById("n1").value = all;
+ */
+					//document.getElementById("n1").value = data;
+				}
+			};
+	
+			//요청방식, 어떤 서버 프로그램 요청, 비동기(true) 설정
+			xhttp.open("GET", "../cont", true);
+			//실제 요청
+			xhttp.send();
+		}
+	</script>
+	
+
+</body>
+</html>
+
+
