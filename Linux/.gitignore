@@ -10,6 +10,7 @@ bin/
 *.ppt
 *.pptx
 *.xml
+*.XML
 tomcat8.5/
 image/
 media/
