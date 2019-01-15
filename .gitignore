@@ -15,6 +15,7 @@ WEB-INF/
 META-INF/
 Servers/
 #practice/
+Lecture note/
 
 
 # Created by https://www.gitignore.io/api/r,java,video,flask,python,cloud9,eclipse,pycharm,database,java-web,apachehadoop,jupyternotebook,visualstudiocode
