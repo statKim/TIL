@@ -9,6 +9,8 @@
 *.vtt
 *.ogg
 *.mp3
+*.pickle
+*.data
 tomcat8.5/
 #media/
 WEB-INF/
