@@ -20,8 +20,7 @@ Servers/
 #practice/
 Lecture note/
 data/
-R/*.html    # Rmd肺 积己等 html颇老 昏力
-
+R/**/*.html
 
 # Created by https://www.gitignore.io/api/r,java,video,flask,python,cloud9,eclipse,pycharm,database,java-web,apachehadoop,jupyternotebook,visualstudiocode
 # Edit at https://www.gitignore.io/?templates=r,java,video,flask,python,cloud9,eclipse,pycharm,database,java-web,apachehadoop,jupyternotebook,visualstudiocode
