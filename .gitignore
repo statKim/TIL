@@ -12,6 +12,7 @@
 *.pickle
 *.data
 *.sav
+*.npy
 tomcat8.5/
 #media/
 WEB-INF/
