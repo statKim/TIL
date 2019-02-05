@@ -1,0 +1,25 @@
+ # github에서 파일 다운로드
+ $git clone 주소
+ 
+ # sqoop에서 mysql로 접근
+ sqoop list-databases --connect jdbc:mysql://localhost:3306/world --username sqoop --password sqoop;
+ 
+ 1.mysql Country의 table 내용을 HDFS로 이관
+	1.hdfs에 어떤 형태로 저장?	=> ","로 구분한 파일로 저장됨(comma separated value)
+	2.hdfs에 저장된 데이터를 다운로드
+		2-1. put : hdfs로 업로드 (DB에서 HDFS로 파일 저장)
+		2-2. get : hdfs에서 로컬시스템으로 다운로드 - 파일 내용 확인 (HDFS에 저장된 파일을 내 로컬로 다운로드)
+		
+ # import			
+ sqoop import --connect jdbc:mysql://localhost:3306/world --username sqoop --password sqoop --table Country -m 1 --target-dir /user/sqoop/country;
+
+ # get
+ hdfs dfs -get /user/sqoop/country/part-m-00000 /home/cloudera/sqooptest/country.csv; (csv파일로 저장)
+ hdfs dfs -get /user/sqoop/country/part-m-00000; (확장자 없는 파일)
+ 
+ # oracle 서버에서 hdfs로 업로드 (import) - oracle:thin:@자기 아이피 주소:1521
+ sqoop import --connect jdbc:oracle:thin:@70.12.50.135:1521:xe --username SCOTT --password TIGER --table EMP -m 1 --target-dir /user/sqoop/emp;
+ 
+ # get
+ hdfs dfs -get /user/sqoop/emp/part-m-00000; (확장자 없이 내가 현재 있는 디렉토리에 저장)
+ hdfs dfs -get /user/sqoop/emp/part-m-00000 /home/cloudera/sqooptest/emp.csv; (절대경로 이용하여 파일 확장자 지정하여 저장)

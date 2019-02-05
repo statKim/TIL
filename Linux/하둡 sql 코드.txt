@@ -1,0 +1,14 @@
+1. 생성 문장, table 삭제시 hdfs의 파일도 삭제
+create table person(name string, age int) row format delimited fields terminated by ',' stored as textfile location '/user/hive/warehouse';
+
+drop table person;
+
+table과 hdfs에 저장된 sample.csv 파일도 삭제
+
+----------------------------
+2. external 키워드를 활용한 생성 문장,
+table 삭제시 hdfs의 파일은 잔존
+
+create external table person(name string, age int) row format delimited fields terminated by ',' stored as textfile location '/user/hive/warehouse2';
+
+create external table person2(name string, age string) row format delimited fields terminated by '$' stored as textfile location '/user/hive/warehouse';
