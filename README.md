@@ -10,9 +10,7 @@
 
 - [**R**](https://github.com/statKim/TIL/tree/master/R)
 - [**Python**](https://github.com/statKim/TIL/tree/master/Python)
-- [**Java**](https://github.com/statKim/TIL/tree/master/Java)
 - [**SQL**](https://github.com/statKim/TIL/tree/master/SQL)
-- [**Web**](https://github.com/statKim/TIL/tree/master/Web)
 - [**Linux**](https://github.com/statKim/TIL/tree/master/Linux)
 - [**Git**](https://github.com/statKim/TIL/tree/master/Git)
 - [**etc**](https://github.com/statKim/TIL/tree/master/etc)
