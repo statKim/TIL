@@ -2,7 +2,7 @@
 
 
 
-### DB 데이터 확인
+### DB 데이터 확인(Select문)
 
 #### 1) DB에 저장되어 있는 Table 목록 확인
 
@@ -14,6 +14,8 @@ SQL> SET PAGESIZE 100
 -- DB에 저장되어 있는 Table 목록 확인
 SQL> SELECT * FROM TAB;
 ```
+
+
 
 ####  2) Table의 column별 Type, Length 확인
 
@@ -30,6 +32,8 @@ SQL> SELECT COLUMN_NAME, DATA_TYPE, DATA_LENGTH,
      WHERE TABLE_NAME='테이블명';
 ```
 
+
+
 #### 3) Table에서 PRIMARY KEY인 컬럼명 뽑아내기
 
 ``` SQL
@@ -39,6 +43,8 @@ SQL> SELECT U.COLUMN_NAME, C.CONSTRAINT_TYPE
            C.CONSTRAINT_TYPE = 'P' AND
            C.CONSTRAINT_NAME = U.CONSTRAINT_NAME;
 ```
+
+
 
 #### 4) Select문으로 데이터 조회
 
