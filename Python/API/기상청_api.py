@@ -2,11 +2,10 @@ import requests
 import pandas as pd
 from time import sleep
 import os
-
+        
 # daily 날씨 데이터를 가져오는 함수
-def get_daily_weather(start_date, end_date, path):
+def get_daily_weather(self, start_date, end_date, path):
     location = pd.read_csv("location_index.csv")
-
     api_key = open("api_key").readlines()[0].strip()   # API key
     url_format = "http://data.kma.go.kr/apiData/getData?type=json&dataCd=ASOS&dateCd=DAY&startDt={start_date}&endDt={end_date}&stnIds={snt_id}&schListCnt=999&pageIndex={page_index}&apiKey={api_key}"
     headers = {'content-type': 'application/json;charset=utf-8'}
@@ -60,7 +59,7 @@ def get_average_temp(start_date, end_date, path, path_save):
             try:
                 response = requests.get(url, headers=headers, verify=False)
             except:
-                sleep(5)
+                sleep(3)
                 response = requests.get(url, headers=headers, verify=False)
 
             if page == 1:
@@ -98,7 +97,7 @@ def get_average_temp(start_date, end_date, path, path_save):
         
 # 지점별 monthly 데이터 생성하는 함수
 def get_monthly_weather(daily_path, timely_path, save_path):
-    var_index = pd.read_csv("var_index2.csv")   # 최종 데이터에 필요한 변수 목록
+    var_index = pd.read_csv("var_index.csv")   # 최종 데이터에 필요한 변수 목록
     os_list = os.listdir(daily_path)
     os_list = [ i.split("_")[1].split(".")[0] for i in os_list ]
 
@@ -114,21 +113,21 @@ def get_monthly_weather(daily_path, timely_path, save_path):
         data_all["시/도"] = data_all["STN_ID"].map(lambda x: location[location["지점"] == x]["시/도"].values[0])
 
         grouped = data_all.groupby("YYYYMM")
-        data_all = pd.concat([grouped["YYYYMM"].max(skipna=True),       # 연월
-                              grouped["시/도"].max(skipna=True),        # 시/도
-                              grouped["STN_ID"].max(skipna=True),       # 지점 
-                              grouped["STN_NM"].max(skipna=True),       # 지점명
-                              grouped["MAX_TA"].max(skipna=True),       # 최고기온
-                              grouped["MIN_TA"].min(skipna=True),       # 최저기온
-                              grouped["MAX_TA"].mean(skipna=True),      # 평균 최고기온
-                              grouped["MIN_TA"].mean(skipna=True),      # 평균 최저기온               
-                              grouped["HR1_MAX_RN"].max(skipna=True),   # 1시간 최고 강수량
-                              grouped["SUM_RN"].sum(skipna=True),       # 월 합 강수량
-                              grouped["SUM_RN"].max(skipna=True),       # 일 최다 강수량
-                              grouped["AVG_RHM"].mean(skipna=True),     # 평균 상대습도
-                              grouped["DD_MEFS"].max(skipna=True),      # 월 최심신적설
-                              grouped["DD_MES"].max(skipna=True),       # 월 최심적설
-                              grouped["SUM_FOG_DUR"].max(skipna=True)   # 월 최대 안개 계속시간
+        data_all = pd.concat([grouped["YYYYMM"].max(),       # 연월
+                              grouped["시/도"].max(),        # 시/도
+                              grouped["STN_ID"].max(),       # 지점 
+                              grouped["STN_NM"].max(),       # 지점명
+                              grouped["MAX_TA"].max(),       # 최고기온
+                              grouped["MIN_TA"].min(),       # 최저기온
+                              grouped["MAX_TA"].mean(),      # 평균 최고기온
+                              grouped["MIN_TA"].mean(),      # 평균 최저기온               
+                              grouped["HR1_MAX_RN"].max(),   # 1시간 최고 강수량
+                              grouped["SUM_RN"].sum(),       # 월 합 강수량
+                              grouped["SUM_RN"].max(),       # 일 최다 강수량
+                              grouped["AVG_RHM"].mean(),     # 평균 상대습도
+                              grouped["DD_MEFS"].max(),      # 월 최심신적설
+                              grouped["DD_MES"].max(),       # 월 최심적설
+                              grouped["SUM_FOG_DUR"].max()   # 월 최대 안개 계속시간
                             ],
                             axis=1,
                             keys=["연월","시/도","지점","지점명","최고기온","최저기온","평균 최고기온","평균 최저기온","1시간 최고 강수량",
@@ -139,3 +138,47 @@ def get_monthly_weather(daily_path, timely_path, save_path):
 
         # 최종 데이터 csv파일로 저장
         result.to_csv("{}/monthly_weather_{}.csv".format(save_path, location_id), index=False, encoding="utf-8")    
+        
+
+#
+def ddd():
+    # 시/도에 해당하는 지점들의 데이터를 모아서 합치기
+    for city in location["시/도"].unique():    
+        print(city)
+        file_list = location[location["시/도"] == city]["지점"].tolist()
+
+        for ind, file in enumerate(file_list):
+            # 만약 시/도에 포함되지만 월별 데이터가 존재하지 않으면 에러가 떠도 그냥 넘어가도록 함
+            try:
+                if ind == 0:
+                    data = pd.read_csv("data/monthly_weather_{}.csv".format(file), encoding="utf-8", engine="python")
+                else:
+                    data = pd.concat([data, pd.read_csv("data/monthly_weather_{}.csv".format(file), encoding="utf-8", engine="python")], axis=0)
+            except:
+                continue
+
+        # 시/도 별로 groupby해서 각 변수에 average 취함
+        grouped = data.groupby("연월")
+        data = pd.concat([grouped["연월"].max(),
+    #                       grouped["시/도"].max(),   # 문자열이라 max() 적용 불가....
+                          grouped["평균기온"].mean(),
+                          grouped["최고기온"].mean(),
+                          grouped["평균 최고기온"].mean(),
+                          grouped["최저기온"].mean(),
+                          grouped["평균 최저기온"].mean(),
+                          grouped["1시간 최고 강수량"].mean(),
+                          grouped["월 합 강수량"].mean(),
+                          grouped["일 최다 강수량"].mean(),
+                          grouped["평균상대습도"].mean(),
+                          grouped["월 최심신적설"].mean(),
+                          grouped["월 최심적설"].mean(),
+                          grouped["월 최대 안개 계속시간"].mean()
+                         ], axis=1)
+        data["시/도"] = city
+        data = data[ ["연월","시/도","평균기온","최고기온","최저기온","평균 최고기온","평균 최저기온","1시간 최고 강수량",  \
+                      "월 합 강수량","일 최다 강수량","평균상대습도","월 최심신적설","월 최심적설","월 최대 안개 계속시간" ] ]        
+        print(data.shape)    
+        print(pd.isna(data["평균기온"]).sum())
+
+        # 최종 데이터 csv파일로 저장
+        data.to_csv("data/monthly_weather_{}.csv".format(city), index=False, encoding="utf-8")
