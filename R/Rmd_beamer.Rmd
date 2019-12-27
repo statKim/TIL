@@ -1,0 +1,35 @@
+---
+title: "Rmarkdown to Beamer"
+author: "Hyunsung Kim"
+date: December 27, 2019
+institute: Department of Statistics \newline Chung-Ang University
+fonttheme: "professionalfonts"
+output:
+  beamer_presentation:
+    theme: "metropolis"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Slide with Math
+
+- inline math : $\widehat X = \sum_{i=1}^n X_i$
+- math block
+  $$
+  \widehat X = \sum_{i=1}^n X_i
+  $$
+
+## Slide with R Output
+
+```{r cars, echo = TRUE}
+summary(cars)
+```
+
+## Slide with Plot
+
+```{r pressure}
+plot(pressure)
+```
+
