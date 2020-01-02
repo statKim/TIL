@@ -75,3 +75,12 @@ plot(pressure)
 
 ![](images/rmd_beamer4.png)
 
+#### 그래프 caption 및 크기 조절
+```r
+​```{r pressure, fig.cap="caption", out.width="250px", out.height="180px"}
+plot(pressure)
+​```
+```
+
+![](images/rmd_beamer5.png)
+
