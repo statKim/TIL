@@ -15,4 +15,4 @@
 }
 ```
 
-![](images/keyboard_shortcut.png)
+![](img/keyboard_shortcut.png)
